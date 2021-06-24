@@ -96,3 +96,8 @@ Eсли бы не было клиента, то нам приходилось б
 
 # JSON
 Для того чтобы сделать более дешевым процесс маршалинга-анмаршалинга пользуемся библиотекой easyjson: https://github.com/mailru/easyjson
+
+func A(s *Str) (a int, err error) {
+    if s != nil {
+    }
+}

@@ -1,4 +1,4 @@
-### Теория
+## Теория
 Знакомство с конвенцией по code style: Конвенция go команды
 
 ### Массивы и срезы
@@ -25,7 +25,7 @@
 - https://github.com/golang/go/blob/master/src/io/io.go (исходники io)
 - https://github.com/golang/go/blob/master/src/strings/strings.go (исходники строки)
   
-### Практика
+## Практика
 Реализовать паттерн фасад https://en.wikipedia.org/wiki/Facade_pattern в соответствии с конвенцией
 
 Для практического задания необходимо создать публичный репозиторий на github'e в контрибьютеры добавить (ssmmxx).
