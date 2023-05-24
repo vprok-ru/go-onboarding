@@ -36,7 +36,9 @@ package some_package
 
 import (
     "standart/golang/libraries"
+    
     "external/golang/libraries"
+    
     "internal/golang/libraries"
 )
 
