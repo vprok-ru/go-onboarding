@@ -1,13 +1,26 @@
 package facade
 
-import (
-	"strings"
+import "strings"
 
-	"main/internal/facade/after-hours"
-	"main/internal/facade/food"
-	"main/internal/facade/job"
-	"main/internal/facade/sleep"
-)
+// Sleep interface
+type Sleep interface {
+	Do() string
+}
+
+// AfterHours interface
+type AfterHours interface {
+	Relax() string
+}
+
+// Job interface
+type Job interface {
+	Work() string
+}
+
+// Food interface
+type Food interface {
+	Eat() string
+}
 
 // Interface dayPlan
 type Interface interface {
@@ -16,10 +29,10 @@ type Interface interface {
 
 // dayPlan Plan on day
 type dayPlan struct {
-	food       food.Interface
-	job        job.Interface
-	afterHours after_hours.Interface
-	sleep      sleep.Interface
+	food       Food
+	job        Job
+	afterHours AfterHours
+	sleep      Sleep
 }
 
 // Implement implementation of the plan for the day
@@ -35,10 +48,10 @@ func (p *dayPlan) Implement() string {
 
 // NewDayPlan dayPlan fabric
 func NewDayPlan(
-	food food.Interface,
-	job job.Interface,
-	afterHours after_hours.Interface,
-	sleep sleep.Interface,
+	food Food,
+	job Job,
+	afterHours AfterHours,
+	sleep Sleep,
 ) Interface {
 	return &dayPlan{
 		food,
