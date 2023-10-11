@@ -4,21 +4,17 @@ import (
 	"fmt"
 
 	"main/internal/command"
-	"main/internal/command/after-hours"
-	"main/internal/command/food"
-	"main/internal/command/job"
-	"main/internal/command/models"
-	"main/internal/command/sleep"
+	"main/internal/command/activities"
 )
 
 func main() {
-	activities := [...]models.Activity{food.NewFood(),
-		job.NewJob(),
-		after_hours.NewAfterHours(),
-		sleep.NewSleep(),
+	activitiesArr := [...]command.Activity{activities.NewFood(),
+		activities.NewJob(),
+		activities.NewAfterHours(),
+		activities.NewSleep(),
 	}
 
-	dayPlan := command.NewDayPlan(activities[:])
+	dayPlan := command.NewDayPlan(activitiesArr[:])
 
 	fmt.Println("Day plan:\n" + dayPlan.Implement())
 }
