@@ -1,11 +1,12 @@
 package facade
 
 import (
+	"strings"
+
 	"main/internal/facade/after-hours"
 	"main/internal/facade/food"
 	"main/internal/facade/job"
 	"main/internal/facade/sleep"
-	"strings"
 )
 
 // Interface dayPlan

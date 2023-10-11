@@ -1,8 +1,9 @@
 package command
 
 import (
-	"main/internal/command/models"
 	"strings"
+
+	"main/internal/command/activities"
 )
 
 // Interface dayPlan
@@ -12,7 +13,7 @@ type Interface interface {
 
 // dayPlan plan on day
 type dayPlan struct {
-	activities []models.Activity
+	activities []activities.Activity
 }
 
 // Implement implementation of the plan for the day
@@ -29,7 +30,7 @@ func (p *dayPlan) Implement() string {
 
 // NewDayPlan dayPlan fabric
 func NewDayPlan(
-	activities []models.Activity,
+	activities []activities.Activity,
 ) Interface {
 	return &dayPlan{
 		activities,

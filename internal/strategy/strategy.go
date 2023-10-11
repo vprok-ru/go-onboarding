@@ -1,10 +1,12 @@
 package strategy
 
+// StrategyRelease interface
 type StrategyRelease interface {
 	SetStrategy(strategy Strategy)
 	Search(array []string, value string) bool
 }
 
+// strategyRelease struct with strategy param
 type strategyRelease struct {
 	strategy Strategy
 }

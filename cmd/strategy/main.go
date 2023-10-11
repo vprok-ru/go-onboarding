@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"main/internal/strategy"
 	"time"
+
+	"main/internal/strategy"
 )
 
 func generator(lenArray int) []string {

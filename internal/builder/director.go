@@ -2,12 +2,11 @@ package builder
 
 import (
 	"main/internal/builder/cars"
-	"main/internal/builder/models"
 )
 
 // Interface for build car
 type Interface interface {
-	BuildCar() models.Car
+	BuildCar() cars.Car
 }
 
 // director for creating cars
@@ -16,7 +15,7 @@ type director struct {
 }
 
 // BuildCar build car
-func (d *director) BuildCar() models.Car {
+func (d *director) BuildCar() cars.Car {
 	d.builder.SetLabel()
 	d.builder.SetWeight()
 	d.builder.SetPower()

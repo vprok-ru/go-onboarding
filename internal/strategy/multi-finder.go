@@ -5,12 +5,12 @@ import (
 	"runtime"
 )
 
+// multiFinder struct
 type multiFinder struct {
-	out  chan bool
 	cpus int
 }
 
-func (f *multiFinder) subSearch(ctx context.Context, array []string, value string) {
+func (f *multiFinder) subSearch(ctx context.Context, outChan chan<- bool, array []string, value string) {
 	for _, elem := range array {
 		select {
 		// stop iterating
@@ -19,23 +19,23 @@ func (f *multiFinder) subSearch(ctx context.Context, array []string, value strin
 		// check element
 		default:
 			if elem == value {
-				f.out <- true
+				outChan <- true
 
 				return
 			}
 		}
 	}
 
-	f.out <- false
+	outChan <- false
 
 	return
 }
 
-// search
+// search method
 func (f *multiFinder) search(array []string, value string) bool {
 	// chan for search status, use in goroutines
-	f.out = make(chan bool, f.cpus)
-	defer close(f.out)
+	outChan := make(chan bool, f.cpus)
+	defer close(outChan)
 
 	// stop goroutines after first coincidence
 	ctx, cancel := context.WithCancel(context.TODO())
@@ -46,16 +46,16 @@ func (f *multiFinder) search(array []string, value string) bool {
 
 	for i := 0; i < (f.cpus); i++ {
 		if i == f.cpus-1 { // if length of array isn't completely divisible, for last step
-			go f.subSearch(ctx, array[i*arrSubLen:], value)
+			go f.subSearch(ctx, outChan, array[i*arrSubLen:], value)
 		} else {
-			go f.subSearch(ctx, array[i*arrSubLen:(i+1)*arrSubLen], value)
+			go f.subSearch(ctx, outChan, array[i*arrSubLen:(i+1)*arrSubLen], value)
 		}
 	}
 
 	// read chan while waiting "true"
 	for i := 0; i < f.cpus; i++ {
 		select {
-		case res := <-f.out:
+		case res := <-outChan:
 			if res == true {
 				return true
 			}
@@ -65,6 +65,7 @@ func (f *multiFinder) search(array []string, value string) bool {
 	return false
 }
 
+// NewMultiFinder fabric for multiFinder with Strategy interface
 func NewMultiFinder() Strategy {
 	return &multiFinder{cpus: runtime.NumCPU()}
 }

@@ -1,10 +1,9 @@
 package cars
 
-import "main/internal/builder/models"
-
+// Builder car interface
 type Builder interface {
 	SetLabel()
 	SetWeight()
 	SetPower()
-	NewCar() models.Car
+	NewCar() Car
 }
