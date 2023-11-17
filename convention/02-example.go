@@ -1,11 +1,11 @@
 package convention
 
-var (
-	some = "112"
-)
-
 const (
 	another = "qwwee"
+)
+
+var (
+	some = "112"
 )
 
 type Iron struct {
